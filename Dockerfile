@@ -9,7 +9,7 @@ RUN apt-get -y install python-pip \
     python-virtualenv \
     python-dev \
     libpq-dev \
-    postgresql-client \
+    postgresql-client
 
 RUN apt-get install build-essential chrpath libssl-dev libxft-dev -y \
     && apt-get install libfreetype6 libfreetype6-dev -y \
