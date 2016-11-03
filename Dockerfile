@@ -4,12 +4,14 @@ MAINTAINER CPF
 RUN ["rm", "-fr", "/usr/local/tomcat/webapps/ROOT"]
 RUN wget -O /usr/local/tomcat/webapps/ROOT.war --auth-no-challenge --http-user=user_ansible --no-check-certificate --http-password=b5c5990592a49e0df211b0e704d3bdd0 https://52.69.16.156:8080/view/Open-lmis%20web/job/moz-build/lastSuccessfulBuild/artifact/open-lmis/modules/openlmis-web/build/libs/openlmis-web.war
 
+RUN add-apt-repository ppa:tanguy-patte/phantomjs
 RUN apt-get update
 RUN apt-get -y install python-pip \
     python-virtualenv \
     python-dev \
     libpq-dev \
-    postgresql-client
+    postgresql-client \
+    phantomjs
 
 ADD setenv.sh /usr/local/tomcat/bin
 
