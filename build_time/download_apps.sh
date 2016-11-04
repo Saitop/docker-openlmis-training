@@ -8,3 +8,10 @@ mkdir -p /app/cubes && wget -O /app/cubes/cubes.zip --auth-no-challenge --http-u
 cd /app/cubes && unzip ./cubes.zip && rm cubes.zip
 #install cubes app dependencies
 pip install -r /app/cubes/bin/requirements.txt
+
+#add properties file that will contain db credentials
+mkdir -p /usr/local/tomcat/extra_properties
+wget -O /usr/local/tomcat/extra_properties/app.properties https://raw.githubusercontent.com/clintonhealthaccess/openlmis-devops/master/deployment/configuration/files/env/prod/app.properties
+wget -O /usr/local/tomcat/extra_properties/atomfeed.properties https://raw.githubusercontent.com/clintonhealthaccess/openlmis-devops/master/deployment/configuration/files/env/prod/atomfeed.properties
+wget -O /usr/local/tomcat/extra_properties/default.properties https://raw.githubusercontent.com/clintonhealthaccess/openlmis-devops/master/deployment/configuration/files/env/prod/default.properties
+wget -O /usr/local/tomcat/extra_properties/mailing.properties https://raw.githubusercontent.com/clintonhealthaccess/openlmis-devops/master/deployment/configuration/files/env/prod/mailing.properties

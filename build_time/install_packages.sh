@@ -6,7 +6,8 @@ apt-get -y install python-pip \
     python-virtualenv \
     python-dev \
     libpq-dev \
-    postgresql-client
+    postgresql-client \
+    ruby
 
 #install prerequisite for phantomjs
 apt-get install build-essential chrpath libssl-dev libxft-dev -y \
