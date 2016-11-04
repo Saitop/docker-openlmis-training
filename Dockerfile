@@ -1,14 +1,6 @@
 FROM tomcat:7.0.72-jre7
 MAINTAINER CPF
 
-#use openlmis web app as root war
-RUN ["rm", "-fr", "/usr/local/tomcat/webapps/ROOT"]
-RUN wget -O /usr/local/tomcat/webapps/ROOT.war --auth-no-challenge --http-user=user_ansible --no-check-certificate --http-password=b5c5990592a49e0df211b0e704d3bdd0 https://52.69.16.156:8080/view/Open-lmis%20web/job/moz-build/lastSuccessfulBuild/artifact/open-lmis/modules/openlmis-web/build/libs/openlmis-web.war
-
-#put cubes package in /app/cubes
-RUN mkdir /app && wget -O /app/cubes.zip --auth-no-challenge --http-user=user_ansible --no-check-certificate --http-password=b5c5990592a49e0df211b0e704d3bdd0 https://52.69.16.156:8080/job/Lmis-cubes/lastSuccessfulBuild/artifact/cubes.zip
-RUN cd /app/ && unzip ./cubes.zip
-
 #install prerequisite for cubes
 RUN apt-get update
 RUN apt-get -y install python-pip \
@@ -34,10 +26,21 @@ RUN set -xeu \
     && ln -sf /usr/local/share/$PHANTOM_JS/bin/phantomjs /usr/local/bin \
     && rm -f $PHANTOM_JS.tar.bz2
 
+#use openlmis web app as root war
+RUN ["rm", "-fr", "/usr/local/tomcat/webapps/ROOT"]
+RUN wget -O /usr/local/tomcat/webapps/ROOT.war --auth-no-challenge --http-user=user_ansible --no-check-certificate --http-password=b5c5990592a49e0df211b0e704d3bdd0 https://52.69.16.156:8080/view/Open-lmis%20web/job/moz-build/lastSuccessfulBuild/artifact/open-lmis/modules/openlmis-web/build/libs/openlmis-web.war
+
+#put cubes package in /app/cubes
+RUN mkdir -p /app/cubes && wget -O /app/cubes.zip --auth-no-challenge --http-user=user_ansible --no-check-certificate --http-password=b5c5990592a49e0df211b0e704d3bdd0 https://52.69.16.156:8080/job/Lmis-cubes/lastSuccessfulBuild/artifact/cubes.zip
+RUN cd /app/cubes && unzip ./cubes.zip && rm cubes.zip
+
 #the following script will be ran when tomcat starts, it'll make sure tomcat picks up the properties
 ADD setenv.sh /usr/local/tomcat/bin
 ADD start.sh /usr/local/bin
 
+RUN chmod +x /usr/local/bin/start.sh
+RUN chmod +x /usr/local/tomcat/bin/setenv.sh
+
 VOLUME ["/usr/local/tomcat/webapps/extra/properties"]
 
-CMD ["catalina.sh", "run"]
+CMD ["start.sh"]
