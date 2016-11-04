@@ -7,7 +7,7 @@ RUN wget -O /usr/local/tomcat/webapps/ROOT.war --auth-no-challenge --http-user=u
 
 #put cubes package in /app/cubes
 RUN mkdir /app && wget -O /app/cubes.zip --auth-no-challenge --http-user=user_ansible --no-check-certificate --http-password=b5c5990592a49e0df211b0e704d3bdd0 https://52.69.16.156:8080/job/Lmis-cubes/lastSuccessfulBuild/artifact/cubes.zip
-RUN unzip /app/cubes.zip
+RUN cd /app/cubes && unzip /app/cubes.zip
 
 #install prerequisite for cubes
 RUN apt-get update
@@ -36,6 +36,7 @@ RUN set -xeu \
 
 #the following script will be ran when tomcat starts, it'll make sure tomcat picks up the properties
 ADD setenv.sh /usr/local/tomcat/bin
+ADD start.sh /usr/local/bin
 
 VOLUME ["/usr/local/tomcat/webapps/extra/properties"]
 
