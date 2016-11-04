@@ -1,8 +1,8 @@
 FROM tomcat:7.0.72-jre7
 MAINTAINER CPF
 
-ADD build_time /
-ADD run_time /
+ADD build_time /build_time
+ADD run_time /run_time
 RUN chmod -R +x /build_time
 RUN chmod -R +x /run_time
 #setenv.sh will be ran when tomcat starts, it'll make sure tomcat picks up the properties
