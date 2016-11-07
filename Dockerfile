@@ -11,5 +11,4 @@ RUN rm -rf /build_time #remove after built, they are not needed for run time
 #add the run time scripts, they will run by default when you do 'docker run'
 ADD run_time /run_time
 RUN chmod -R +x /run_time
-EXPOSE 5555 8080
 CMD ["/run_time/start.sh"]
