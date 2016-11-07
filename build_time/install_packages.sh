@@ -25,3 +25,10 @@ set -xeu \
     && mv $PHANTOM_JS /usr/local/share \
     && ln -sf /usr/local/share/$PHANTOM_JS/bin/phantomjs /usr/local/bin \
     && rm -f $PHANTOM_JS.tar.bz2
+
+#install flyway
+mkdir -p /opt/flyway/
+cd /opt/flyway/
+wget https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/3.2.1/flyway-commandline-3.2.1.tar.gz
+tar -xvzf flyway-commandline-3.2.1.tar.gz
+rm flyway-commandline-3.2.1.tar.gz
