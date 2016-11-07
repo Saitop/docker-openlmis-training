@@ -15,7 +15,8 @@ linesWithCredentials=lines.map { |line|
     puts "replacing user name"
     "openlmis.jdbc.username="+ENV["POSTGRES_USER_NAME"]
   elsif line["openlmis.jdbc.password="]
-    "openlmis.jdbc.password="+ENV["POSTGRES_USER_NAME"]
+    puts "replacing password"
+    "openlmis.jdbc.password="+ENV["POSTGRES_PASSWORD"]
   else
     line
   end
