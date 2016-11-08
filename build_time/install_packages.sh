@@ -29,6 +29,6 @@ set -xeu \
 #install flyway
 mkdir -p /opt/flyway/
 cd /opt/flyway/
-wget https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/3.2.1/flyway-commandline-3.2.1.tar.gz
-tar -xvzf flyway-commandline-3.2.1.tar.gz
-rm flyway-commandline-3.2.1.tar.gz
+wget https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/4.0.3/flyway-commandline-4.0.3-linux-x64.tar.gz
+tar -xvzf flyway-commandline-4.0.3-linux-x64.tar.gz -C . --strip-components=1
+rm flyway-commandline-4.0.3-linux-x64.tar.gz
