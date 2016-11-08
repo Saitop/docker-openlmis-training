@@ -1,7 +1,7 @@
 # add pg credentials to bashrc so the start script of CUBES will pick them up and replace them
-pg_credentials=["POSTGRES_USER_NAME",
-                "POSTGRES_PASSWORD",
-                "POSTGRES_HOST"].map { |key| key+"="+ENV[key] }
+pg_credentials=["POSTGRES_USER_NAME="+ENV["POSTGRES_USER"],
+                "POSTGRES_PASSWORD="+ENV["POSTGRES_PASSWORD"],
+                "POSTGRES_HOST="+ENV["POSTGRES_HOST"]]
 
 File.open("/root/.bashrc", 'w') { |file| file.write(pg_credentials.join("\n")) }
 
@@ -13,7 +13,7 @@ linesWithCredentials=lines.map { |line|
     "openlmis.jdbc.url=jdbc:postgresql://"+ENV["POSTGRES_HOST"]+":5432/open_lmis"
   elsif line["openlmis.jdbc.username="]
     puts "replacing user name"
-    "openlmis.jdbc.username="+ENV["POSTGRES_USER_NAME"]
+    "openlmis.jdbc.username="+ENV["POSTGRES_USER"]
   elsif line["openlmis.jdbc.password="]
     puts "replacing password"
     "openlmis.jdbc.password="+ENV["POSTGRES_PASSWORD"]

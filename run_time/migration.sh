@@ -8,7 +8,7 @@ echo "CREATE SCHEMA atomfeed;" > /opt/flyway/sql/db/V1__create_atomfeed_schema.s
 /opt/flyway/flyway \
   -url=jdbc:postgresql://$POSTGRES_HOST:5432/open_lmis \
   -schemas=public,atomfeed \
-  -user=$POSTGRES_USER_NAME \
+  -user=$POSTGRES_USER \
   -password=$POSTGRES_PASSWORD \
   -table=schema_version \
   -placeholderReplacement=false \
@@ -18,7 +18,7 @@ echo "CREATE SCHEMA atomfeed;" > /opt/flyway/sql/db/V1__create_atomfeed_schema.s
 /opt/flyway/flyway \
   -url=jdbc:postgresql://$POSTGRES_HOST:5432/open_lmis \
   -schemas=public,atomfeed \
-  -user=$POSTGRES_USER_NAME \
+  -user=$POSTGRES_USER \
   -password=$POSTGRES_PASSWORD \
   -table=migration_schema_version \
   -placeholderReplacement=false \

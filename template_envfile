@@ -1,3 +1,4 @@
-POSTGRES_USER_NAME=user_name
-POSTGRES_PASSWORD=password
-POSTGRES_HOST=ip_or_domain_name
+POSTGRES_HOST=postgres
+POSTGRES_DB=open_lmis
+POSTGRES_USER_NAME=postgres
+POSTGRES_PASSWORD=hello123
