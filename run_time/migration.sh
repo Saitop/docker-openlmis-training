@@ -3,6 +3,8 @@
 unzip /usr/local/tomcat/webapps/db/db.jar -d /opt/flyway/sql/db
 unzip /usr/local/tomcat/webapps/db/migration.jar -d /opt/flyway/sql/migration
 
+echo "CREATE SCHEMA atomfeed;" > /opt/flyway/sql/db/V1__create_atomfeed_schema.sql
+
 /opt/flyway/flyway \
   -url=jdbc:postgresql://$POSTGRES_HOST:5432/open_lmis \
   -schemas=public,atomfeed \
