@@ -5,6 +5,11 @@ MAINTAINER CPF
 ADD build_time /build_time
 RUN chmod -R +x /build_time
 RUN /build_time/install_packages.sh
+
+#break cache to force docker build to redownload apps every time
+#but keep the packages if cached
+ARG CACHE_DATE=not_a_date
+
 RUN /build_time/download_apps.sh
 RUN rm -rf /build_time #remove after built, they are not needed for run time
 
