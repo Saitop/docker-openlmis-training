@@ -1,2 +1,4 @@
 env
 localrun.sh
+.idea/
+*.iml
